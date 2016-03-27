@@ -213,4 +213,16 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
         System.out.println(nList);
     }
     
+    public Iterator<T> iterator() {
+	    Iterator<T> itr = new MyIterator();
+	    return itr;
+    }
+
+    private class MyIterator implements Iterator<T> {
+
+    	private DLLNode<T> _curr;
+    	public MyIterator() {
+	        _curr = _head;
+	}
+    
 }//end class LList
