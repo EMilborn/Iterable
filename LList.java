@@ -1,3 +1,6 @@
+import java.util.Iterator;
+
+
 public class LList<T> implements List<T> { //your List.java must be in same dir
     
     //instance vars
@@ -221,8 +224,31 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
     private class MyIterator implements Iterator<T> {
 
     	private DLLNode<T> _curr;
+	private boolean canRemove;
+
     	public MyIterator() {
-	        _curr = _head;
+	    _curr = _head;
+	    canRemove = false;
 	}
+
+	public boolean hasNext(){
+	    if (_curr.getNext() == null){
+		return false;}
+	    return true;
+	}
+
+	public T next(){
+	    if (!hasNext()){
+		throw new NullPointerException();
+	    }
+	    canRemove = true;
+	    _curr = _curr.getNext();
+	    return _curr.getCargo();
+	    
+	}
+	
+	public void remove(){
+	}
+    }
     
 }//end class LList
