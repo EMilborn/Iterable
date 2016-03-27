@@ -253,10 +253,10 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
             //eg next(), rm(), rm() -> must throw exception
             //use a flag variable(boolean?) to check if next has been done or not.
             //Q: how make sure user calls next() before rm?
-	    if (_hasCalledNext) {
+	    if (canRemove) {
 			_curr.getNext().setPrev( _curr.getPrev() );
 			_curr.getPrev().setNext( _curr.getNext() );
-			_hasCalledNext = false;
+		        canRemove = false;
 	    }
 	    else {
 			throw new IllegalStateException("Must call next() first");
