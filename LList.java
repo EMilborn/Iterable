@@ -247,8 +247,21 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
 	    
 	}
 	
-	public void remove(){
-	}
+	public void remove() {
+            //must take into acct:
+            //next() call MUST precede each remove call
+            //eg next(), rm(), rm() -> must throw exception
+            //use a flag variable(boolean?) to check if next has been done or not.
+            //Q: how make sure user calls next() before rm?
+	    if (_hasCalledNext) {
+			_curr.getNext().setPrev( _curr.getPrev() );
+			_curr.getPrev().setNext( _curr.getNext() );
+			_hasCalledNext = false;
+	    }
+	    else {
+			throw new IllegalStateException("Must call next() first");
+	    }
+    	}
     }
     
 }//end class LList
